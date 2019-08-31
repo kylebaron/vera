@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+test\.R
+Makefile
+^vera_.*\.tar\.gz
+vera\.Rcheck
+\.Rhistory

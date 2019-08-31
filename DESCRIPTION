@@ -1,0 +1,16 @@
+Package: vera
+Type: Package
+Title: Local Sensitivity Analysis with 'mrgsolve'
+Version: 0.1.0
+Author: Kyle Baron
+Maintainer: Kyle Baron <kylebtwin@imap.cc>
+Description: Perform local sensitivity analysis on ordinary differential 
+    equation based models written with 'mrgsolve'.
+License: GPL (>=2)
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr
+Depends: mrgsolve
+Suggests: ggplot2
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
