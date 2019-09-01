@@ -1,7 +1,7 @@
-
-
 context("basic functionality")
+
 mod <- suppressMessages(mrgsolve::modlib("pk1"))
+
 fun <- function(p) {
   mod %>%
     param(p) %>%
@@ -17,7 +17,6 @@ test_that("basic sensitivity analysis", {
   expect_true(all(out[["var"]]=="CP"))
   expect_identical(unique(out[["par"]]),c("CL", "KA"))
 })
-
 
 test_that("error for bad parameter", {
   expect_error(lsa(mod, fun, par = "KYLE", var = "CP"))
