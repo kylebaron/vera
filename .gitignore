@@ -1,4 +1,9 @@
+README.html
+vera.Rcheck
+test.R
+vera*.tar.gz
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store

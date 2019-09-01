@@ -36,9 +36,10 @@ dvalue <- function(sim,ref,scale) {
 #' @param var output names (compartment or capture) as character vector
 #' or comma-separated string
 #' @param eps parameter change value for sensitivity analysis
+#' @param ... arguments passed to `fun`
 #'
 #' @export
-lsa <- function(mod, fun, par, var, eps=1E-8) {
+lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
   parameters <- mrgsolve::param(mod)
   par_names <- names(parameters)
   par_sens <- cvec_cs(par)
@@ -53,7 +54,7 @@ lsa <- function(mod, fun, par, var, eps=1E-8) {
   }
   parm <- as.numeric(parameters)[par_sens]
   var <- cvec_cs(var)
-  base <- fun(parm)
+  base <- fun(parm,...)
   if(!all(var %in% names(base))) {
     col_bad <- setdiff(var,names(base))
     col_bad <- paste0(col_bad,collapse=',')
@@ -76,7 +77,7 @@ lsa <- function(mod, fun, par, var, eps=1E-8) {
   tosim <- lapply(seq_along(new_p), function(i) {
     base_par[i] <- new_p[i]
   })
-  out <- lapply(tosim,fun)
+  out <- lapply(tosim,fun,...)
   out <- lapply(out, function(x) x[,cols_keep])
   out <- lapply(out, make_long, cols = var)
   for(i in seq_along(tosim)) {
