@@ -85,3 +85,9 @@ filter(out, par=="Kpmu") %>%
   facet_wrap(~par) + geom_hline(yintercept=0,lty=2)
 ```
 
+
+<hr>
+
+# More info
+
+See [inst/doc/about.md (on GitHub only)](inst/doc/about.md) for more details.

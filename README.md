@@ -96,3 +96,10 @@ filter(out, par=="Kpmu") %>%
 ```
 
 ![](man/images/readme-unnamed-chunk-6-1.png)<!-- -->
+
+<hr>
+
+# More info
+
+See [inst/doc/about.md (on GitHub only)](inst/doc/about.md) for more
+details.
