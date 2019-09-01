@@ -81,3 +81,18 @@ plot(out)
 ```
 
 ![](man/images/readme-unnamed-chunk-5-1.png)<!-- -->
+
+# Plot with ggplot2
+
+``` r
+library(ggplot2)
+
+filter(out, par=="Kpmu") %>% 
+  ggplot(aes(time,sens,col=var)) + 
+  geom_line(lwd=1) + theme_bw() + 
+  scale_color_brewer(palette="Set2") + 
+  theme(legend.position="top") + 
+  facet_wrap(~par) + geom_hline(yintercept=0,lty=2)
+```
+
+![](man/images/readme-unnamed-chunk-6-1.png)<!-- -->
