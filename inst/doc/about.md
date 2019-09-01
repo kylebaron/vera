@@ -7,7 +7,7 @@
    analysis on selected parameters and outputs.
 1. I would like to plot the sensitivity analysis.
    
-## Summary of requirements
+## Summary of Requirements
 
 1. The user will build and load a model using mrgsolve. 
 1. The user will create a function taking a list of parameters as the first
