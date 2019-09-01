@@ -1,0 +1,14 @@
+url: https://github.com/kylebaron/vera
+navbar:
+  type: default
+  left:
+  - text: Reference
+    href: reference/index.html
+  - text: GitHub
+    href: https://github.com/kylebaron/vera
+home:
+  links:
+  - text: Source code
+    href: https://github.com/kylebaron/vera
+  - text: Issues
+    href: https://github.com/kylebaron/vera/issues
