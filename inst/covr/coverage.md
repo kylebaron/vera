@@ -1,6 +1,5 @@
-# coverage: 97.83%
+# coverage: 0%
 
-|file             | coverage|
-|:----------------|--------:|
-|R/lastdose.R     |    93.75|
-|src/lastdose.cpp |   100.00|
+|file     | coverage|
+|:--------|--------:|
+|R/vera.R |        0|
