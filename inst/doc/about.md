@@ -5,7 +5,7 @@
 
 1. I have a model written in mrgsolve and I wish to do local sensitivity 
    analysis on selected parameters and outputs.
-1. I would like to plot the sensitivity analysis.
+1. I would like to plot the results of my sensitivity analysis.
    
 ## Summary of Requirements
 
