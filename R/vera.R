@@ -39,8 +39,29 @@ dvalue <- function(sim,ref,scale) {
 #' @param eps parameter change value for sensitivity analysis
 #' @param ... arguments passed to `fun`
 #'
+#' @examples
+#' mod <- mrgsolve::modlib("pk1")
+#'
+#' par <- "CL,KA"
+#'
+#' var <- "CP"
+#'
+#' dose <- ev(amt = 100)
+#'
+#' fun <- function(p) mrgsim_e(mod,dose,param=p,output="df")
+#'
+#' out <- lsa(mod, fun, par, var)
+#'
+#' head(out)
+#'
+#' plot(out)
+#'
 #' @export
 lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
+  if(!inherits(mod,"mrgmod")) {
+    stop("mod argument must have class 'mrgmod'.", call.=FALSE)
+  }
+  if(!is.numeric(eps)) stop("eps argument must be numeric.",call.=FALSE)
   parameters <- mrgsolve::param(mod)
   par_names <- names(parameters)
   par_sens <- cvec_cs(par)
@@ -56,6 +77,12 @@ lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
   parm <- as.numeric(parameters)[par_sens]
   var <- cvec_cs(var)
   base <- as.data.frame(fun(parm,...))
+  if(!any(exists(c("time", "TIME"),base))) {
+    stop(
+      "output from fun must contain a column of time or TIME.",
+      call.=FALSE
+    )
+  }
   if(!all(var %in% names(base))) {
     col_bad <- setdiff(var,names(base))
     col_bad <- paste0(col_bad,collapse=',')
@@ -79,7 +106,7 @@ lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
     base_par[i] <- new_p[i]
   })
   out <- lapply(tosim,fun,...)
-  out <- lapply(out, as.data.frame)
+  out <- lapply(out,as.data.frame)
   out <- lapply(out, function(x) x[,cols_keep])
   out <- lapply(out, make_long, cols = var)
   for(i in seq_along(tosim)) {

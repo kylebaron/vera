@@ -23,3 +23,21 @@ or comma-separated string}
 \description{
 Perform local sensitivity analysis
 }
+\examples{
+mod <- mrgsolve::modlib("pk1")
+
+par <- "CL,KA"
+
+var <- "CP"
+
+dose <- ev(amt = 100)
+
+fun <- function(p) mrgsim_e(mod,dose,param=p,output="df")
+
+out <- lsa(mod, fun, par, var)
+
+head(out)
+
+plot(out)
+
+}

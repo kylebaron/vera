@@ -138,11 +138,33 @@ or comma-separated string</p></td>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>mod</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>mrgsolve</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/mrgsolve/topics/modlib'>modlib</a></span>(<span class='st'>"pk1"</span>)</div><div class='output co'>#&gt; <span class='message'>Building pk1 ... </span></div><div class='output co'>#&gt; <span class='message'>done.</span></div><div class='input'>
+<span class='no'>par</span> <span class='kw'>&lt;-</span> <span class='st'>"CL,KA"</span>
+
+<span class='no'>var</span> <span class='kw'>&lt;-</span> <span class='st'>"CP"</span>
+
+<span class='no'>dose</span> <span class='kw'>&lt;-</span> <span class='fu'>ev</span>(<span class='kw'>amt</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+
+<span class='no'>fun</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>p</span>) <span class='fu'>mrgsim_e</span>(<span class='no'>mod</span>,<span class='no'>dose</span>,<span class='kw'>param</span><span class='kw'>=</span><span class='no'>p</span>,<span class='kw'>output</span><span class='kw'>=</span><span class='st'>"df"</span>)
+
+<span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'>lsa</span>(<span class='no'>mod</span>, <span class='no'>fun</span>, <span class='no'>par</span>, <span class='no'>var</span>)
+
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>out</span>)</div><div class='output co'>#&gt;   time var    value par        sens
+#&gt; 1    0  CP 0.000000  CL  0.00000000
+#&gt; 2    0  CP 0.000000  CL  0.00000000
+#&gt; 3    1  CP 3.070263  CL -0.02890004
+#&gt; 4    2  CP 4.050011  CL -0.06495577
+#&gt; 5    3  CP 4.268005  CL -0.10657773
+#&gt; 6    4  CP 4.212711  CL -0.15194490</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>out</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: ggplot2</span></div><div class='img'><img src='lsa-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
