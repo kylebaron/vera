@@ -26,7 +26,7 @@ Perform local sensitivity analysis
 \examples{
 mod <- mrgsolve::modlib("pk1")
 
-par <- "CL,KA"
+par <- "CL,V,KA"
 
 var <- "CP"
 

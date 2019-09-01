@@ -42,7 +42,7 @@ dvalue <- function(sim,ref,scale) {
 #' @examples
 #' mod <- mrgsolve::modlib("pk1")
 #'
-#' par <- "CL,KA"
+#' par <- "CL,V,KA"
 #'
 #' var <- "CP"
 #'
