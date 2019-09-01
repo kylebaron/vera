@@ -40,7 +40,7 @@ dvalue <- function(sim,ref,scale) {
 #' @param ... arguments passed to `fun`
 #'
 #' @examples
-#' mod <- mrgsolve::modlib("pk1")
+#' mod <- mrgsolve::modlib("pk1",delta=0.1)
 #'
 #' par <- "CL,V,KA"
 #'

@@ -24,7 +24,7 @@ or comma-separated string}
 Perform local sensitivity analysis
 }
 \examples{
-mod <- mrgsolve::modlib("pk1")
+mod <- mrgsolve::modlib("pk1",delta=0.1)
 
 par <- "CL,V,KA"
 
