@@ -104,6 +104,7 @@ plot.lsa <- function(x,y=NULL,...) {
   if("TIME" %in% names(x)) tcol <- "TIME"
   if(!exists(tcol,x)) stop("couldn't find time column", call.=FALSE)
   x[["vera__plot__time"]] <- x[[tcol]]
+  x[["var"]] <- factor(x[["var"]], levels=unique(x[["var"]]))
   ggplot2::ggplot(x,ggplot2::aes_string("vera__plot__time","sens",col="par")) +
     ggplot2::geom_line(lwd=1) +
     ggplot2::theme_bw() +
