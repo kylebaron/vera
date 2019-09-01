@@ -13,7 +13,7 @@ mod <- modlib(
   "pbpk", 
   end = 12,     delta = 0.1, 
   atol = 1E-20, rtol  = 1E-12, hmax = 0.5
-)
+) %>% obsonly
 ```
 
 # Scenario
@@ -68,11 +68,11 @@ head(out)
 
     .   time var    value  par       sens
     . 1  0.0  Cp 0.000000 Kpli  0.0000000
-    . 2  0.0  Cp 0.000000 Kpli  0.0000000
-    . 3  0.1  Cp 0.913300 Kpli -0.2344372
-    . 4  0.2  Cp 1.240780 Kpli -0.2207772
-    . 5  0.3  Cp 1.425315 Kpli -0.2315567
-    . 6  0.4  Cp 1.546065 Kpli -0.2460310
+    . 2  0.1  Cp 0.913300 Kpli -0.2344372
+    . 3  0.2  Cp 1.240780 Kpli -0.2207772
+    . 4  0.3  Cp 1.425315 Kpli -0.2315567
+    . 5  0.4  Cp 1.546065 Kpli -0.2460310
+    . 6  0.5  Cp 1.625033 Kpli -0.2619396
 
 There is a default plotting method as well.
 
