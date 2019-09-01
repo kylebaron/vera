@@ -49,7 +49,7 @@ Use `vera::lsa()`.  We pick the __parameters__ that we want to fiddle with
 - `Kpad` adipose tissue partition coefficient
 - `BW` body weight 
 
-Also specify the __output__ that we want to look at:
+Also specify the __output__ that we want to look at (`var`):
 
 - `Cp` - venous concentration
 - `Amu` - amount in the muscle compartment

@@ -46,7 +46,7 @@ with (`par`):
   - `Kpad` adipose tissue partition coefficient
   - `BW` body weight
 
-Also specify the **output** that we want to look at:
+Also specify the **output** that we want to look at (`var`):
 
   - `Cp` - venous concentration
   - `Amu` - amount in the muscle compartment
