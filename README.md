@@ -38,10 +38,20 @@ fun(param(mod),d) %>% plot(Cp+Amu~time)
 
 # Sensitivity analysis
 
-Use `vera::lsa()`. We pick the paramters that we want to fiddle with
-(`par`) and the output that we want to look at (`Cp` and `Amu` - the
-amount in the muscle compartment). `d` gets passed through to the
-function as
+Use `vera::lsa()`. We pick the **parameters** that we want to fiddle
+with (`par`):
+
+  - `Kpli` liver partition coefficient
+  - `Kpmu` muscle partition coefficient
+  - `Kpad` adipose tissue partition coefficient
+  - `BW` body weight
+
+Also specify the **output** that we want to look at:
+
+  - `Cp` - venous concentration
+  - `Amu` - amount in the muscle compartment
+
+`d` gets passed through to the function as
 `dose`.
 
 ``` r
