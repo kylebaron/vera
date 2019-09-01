@@ -4,10 +4,8 @@ output: github_document
 ---
 
 ```{r,setup,include=FALSE}
-knitr::opts_chunk$set(
-  comment = '.', message=FALSE, warning = FALSE, 
-  fig.path = "man/images/readme-"
-)
+knitr::opts_chunk$set(comment = '.', message=FALSE, warning = FALSE, 
+                      fig.path="man/figures/README-")
 ```
 
 # Model

@@ -34,7 +34,7 @@ d <- ev(amt = 100)
 fun(param(mod),d) %>% plot(Cp+Amu~time)
 ```
 
-![](man/images/readme-unnamed-chunk-2-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-2-1.png)<!-- -->
 
 # Sensitivity analysis
 
@@ -80,7 +80,7 @@ There is a default plotting method as well.
 plot(out)
 ```
 
-![](man/images/readme-unnamed-chunk-5-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-5-1.png)<!-- -->
 
 # Plot with ggplot2
 
@@ -95,7 +95,7 @@ filter(out, par=="Kpmu") %>%
   facet_wrap(~par) + geom_hline(yintercept=0,lty=2)
 ```
 
-![](man/images/readme-unnamed-chunk-6-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-6-1.png)<!-- -->
 
 <hr>
 
