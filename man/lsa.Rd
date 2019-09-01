@@ -4,7 +4,7 @@
 \alias{lsa}
 \title{Perform local sensitivity analysis}
 \usage{
-lsa(mod, fun, par, var, eps = 1e-08)
+lsa(mod, fun, par, var, eps = 1e-08, ...)
 }
 \arguments{
 \item{mod}{a mrgsolve model object}
@@ -17,6 +17,8 @@ lsa(mod, fun, par, var, eps = 1e-08)
 or comma-separated string}
 
 \item{eps}{parameter change value for sensitivity analysis}
+
+\item{...}{arguments passed to \code{fun}}
 }
 \description{
 Perform local sensitivity analysis

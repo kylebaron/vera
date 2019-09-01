@@ -3,8 +3,8 @@ local sensitivity analysis with mrgsolve
 
 # Model
 
-Load the vera package and a model from the mrgsolve package. We increase
-the tolerance a bit as well as the maximum step size.
+Load the vera package and a PBPK model from the mrgsolve package. We
+decrease the tolerance a bit as well as the maximum step size.
 
 ``` r
 library(vera)
@@ -26,21 +26,26 @@ fun <- function(p,dose) {
   mod %>% 
     param(p) %>% 
     ev(dose) %>% 
-    mrgsim_df()
+    mrgsim()
 }
 
 d <- ev(amt = 100)
+
+fun(param(mod),d) %>% plot(Cp+Amu~time)
 ```
+
+![](man/images/readme-unnamed-chunk-2-1.png)<!-- -->
 
 # Sensitivity analysis
 
 Use `vera::lsa()`. We pick the paramters that we want to fiddle with
 (`par`) and the output that we want to look at (`Cp` and `Amu` - the
 amount in the muscle compartment). `d` gets passed through to the
-function as `dose`.
+function as
+`dose`.
 
 ``` r
-out <- lsa(mod, fun, par = "Kpli,Kpmu,BW,Ka", var = "Cp,Amu", dose = d)
+out <- lsa(mod, fun, par = "Kpli,Kpmu,Kpad,BW", var = "Cp,Amu", dose = d)
 ```
 
 # Ouput

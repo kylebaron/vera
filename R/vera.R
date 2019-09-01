@@ -1,4 +1,5 @@
 #' @importFrom mrgsolve param
+#' @importMethodsFrom mrgsolve as.data.frame
 #' @importFrom dplyr bind_rows
 NULL
 
@@ -54,7 +55,7 @@ lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
   }
   parm <- as.numeric(parameters)[par_sens]
   var <- cvec_cs(var)
-  base <- fun(parm,...)
+  base <- as.data.frame(fun(parm,...))
   if(!all(var %in% names(base))) {
     col_bad <- setdiff(var,names(base))
     col_bad <- paste0(col_bad,collapse=',')
@@ -78,6 +79,7 @@ lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
     base_par[i] <- new_p[i]
   })
   out <- lapply(tosim,fun,...)
+  out <- lapply(out, as.data.frame)
   out <- lapply(out, function(x) x[,cols_keep])
   out <- lapply(out, make_long, cols = var)
   for(i in seq_along(tosim)) {
