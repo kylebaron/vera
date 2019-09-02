@@ -9,6 +9,8 @@ Description: Perform local sensitivity analysis on ordinary differential
 License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/kylebaron/vera
+BugReports: https://github.com/kylebaron/lastdose/vera
 Imports: dplyr
 Depends: mrgsolve
 Suggests: ggplot2, testthat
