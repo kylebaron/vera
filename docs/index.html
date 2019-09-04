@@ -69,9 +69,19 @@
 
     
     
-<div id="model" class="section level1">
+<div id="vera" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#model" class="anchor"></a>Model</h1></div>
+<a href="#vera" class="anchor"></a>vera</h1></div>
+<!-- badges: start -->
+
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p>local sensitivity analysis in R with mrgsolve</p>
+</div>
+<div id="model" class="section level2">
+<h2 class="hasAnchor">
+<a href="#model" class="anchor"></a>Model</h2>
 <p>Load the vera package and a PBPK model from the mrgsolve package. We decrease the tolerance a bit as well as the maximum step size.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(vera)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
@@ -81,9 +91,9 @@
 <a class="sourceLine" id="cb1-6" title="6">  <span class="dt">atol =</span> <span class="fl">1E-20</span>, <span class="dt">rtol  =</span> <span class="fl">1E-12</span>, <span class="dt">hmax =</span> <span class="fl">0.5</span></a>
 <a class="sourceLine" id="cb1-7" title="7">) <span class="op">%&gt;%</span><span class="st"> </span>obsonly</a></code></pre></div>
 </div>
-<div id="scenario" class="section level1">
-<h1 class="hasAnchor">
-<a href="#scenario" class="anchor"></a>Scenario</h1>
+<div id="scenario" class="section level2">
+<h2 class="hasAnchor">
+<a href="#scenario" class="anchor"></a>Scenario</h2>
 <p>Create a function that uses the model to simulate a certain scenario. For now, we just simulate a single dose.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">fun &lt;-<span class="st"> </span><span class="cf">function</span>(p,dose) {</a>
 <a class="sourceLine" id="cb2-2" title="2">  mod <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -97,9 +107,9 @@
 <a class="sourceLine" id="cb2-10" title="10"><span class="kw">fun</span>(<span class="kw">param</span>(mod),d) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(Cp<span class="op">+</span>Amu<span class="op">~</span>time)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="700"></p>
 </div>
-<div id="sensitivity-analysis" class="section level1">
-<h1 class="hasAnchor">
-<a href="#sensitivity-analysis" class="anchor"></a>Sensitivity analysis</h1>
+<div id="sensitivity-analysis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sensitivity-analysis" class="anchor"></a>Sensitivity analysis</h2>
 <p>Use <code><a href="reference/lsa.html">vera::lsa()</a></code>. We pick the <strong>parameters</strong> that we want to fiddle with (<code>par</code>):</p>
 <ul>
 <li>
@@ -121,9 +131,9 @@
 <p><code>d</code> gets passed through to the function as <code>dose</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">out &lt;-<span class="st"> </span><span class="kw"><a href="reference/lsa.html">lsa</a></span>(mod, fun, <span class="dt">par =</span> <span class="st">"Kpli,Kpmu,Kpad,BW"</span>, <span class="dt">var =</span> <span class="st">"Cp,Amu"</span>, <span class="dt">dose =</span> d)</a></code></pre></div>
 </div>
-<div id="ouput" class="section level1">
-<h1 class="hasAnchor">
-<a href="#ouput" class="anchor"></a>Ouput</h1>
+<div id="ouput" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ouput" class="anchor"></a>Ouput</h2>
 <p>The output is long and ready to send in to <code>ggplot2</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(out)</a></code></pre></div>
 <pre><code>.   time var    value  par       sens
@@ -137,9 +147,9 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(out)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="700"></p>
 </div>
-<div id="plot-with-ggplot2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#plot-with-ggplot2" class="anchor"></a>Plot with ggplot2</h1>
+<div id="plot-with-ggplot2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#plot-with-ggplot2" class="anchor"></a>Plot with ggplot2</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb7-2" title="2"></a>
 <a class="sourceLine" id="cb7-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(out, par<span class="op">==</span><span class="st">"Kpmu"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -151,10 +161,11 @@
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="700"></p>
 <hr>
 </div>
-<div id="more-info" class="section level1">
-<h1 class="hasAnchor">
-<a href="#more-info" class="anchor"></a>More info</h1>
+<div id="more-info" class="section level2">
+<h2 class="hasAnchor">
+<a href="#more-info" class="anchor"></a>More info</h2>
 <p>See <a href="inst/doc/about.html">inst/doc/about.md (on GitHub only)</a> for more details.</p>
+</div>
 </div>
   </div>
 
@@ -182,7 +193,13 @@
 </div>
 
 
-      </div>
+      <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://travis-ci.org/kylebaron/vera"><img src="https://travis-ci.org/kylebaron/vera.svg?branch=master" alt="Travis build status"></a></li>
+</ul>
+</div>
+</div>
 
 </div>
 

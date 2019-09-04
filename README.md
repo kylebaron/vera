@@ -1,7 +1,17 @@
-local sensitivity analysis with mrgsolve
-================
 
-# Model
+# vera
+
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.org/kylebaron/vera.svg?branch=master)](https://travis-ci.org/kylebaron/vera)
+<!-- badges: end -->
+
+## Overview
+
+local sensitivity analysis in R with mrgsolve
+
+## Model
 
 Load the vera package and a PBPK model from the mrgsolve package. We
 decrease the tolerance a bit as well as the maximum step size.
@@ -16,7 +26,7 @@ mod <- modlib(
 ) %>% obsonly
 ```
 
-# Scenario
+## Scenario
 
 Create a function that uses the model to simulate a certain scenario.
 For now, we just simulate a single dose.
@@ -36,7 +46,7 @@ fun(param(mod),d) %>% plot(Cp+Amu~time)
 
 ![](man/figures/README-unnamed-chunk-2-1.png)<!-- -->
 
-# Sensitivity analysis
+## Sensitivity analysis
 
 Use `vera::lsa()`. We pick the **parameters** that we want to fiddle
 with (`par`):
@@ -58,7 +68,7 @@ Also specify the **output** that we want to look at (`var`):
 out <- lsa(mod, fun, par = "Kpli,Kpmu,Kpad,BW", var = "Cp,Amu", dose = d)
 ```
 
-# Ouput
+## Ouput
 
 The output is long and ready to send in to `ggplot2`.
 
@@ -82,7 +92,7 @@ plot(out)
 
 ![](man/figures/README-unnamed-chunk-5-1.png)<!-- -->
 
-# Plot with ggplot2
+## Plot with ggplot2
 
 ``` r
 library(ggplot2)
@@ -99,7 +109,7 @@ filter(out, par=="Kpmu") %>%
 
 <hr>
 
-# More info
+## More info
 
 See [inst/doc/about.md (on GitHub only)](inst/doc/about.md) for more
 details.
