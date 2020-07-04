@@ -1,6 +1,6 @@
 #' @importFrom mrgsolve param
 #' @importMethodsFrom mrgsolve as.data.frame
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr bind_rows as_tibble
 NULL
 
 cvec_cs <- function(x) {
@@ -50,14 +50,14 @@ dvalue <- function(sim,ref,scale) {
 #'
 #' fun <- function(p) mrgsolve::mrgsim_e(mod,dose,param=p,output="df")
 #'
-#' out <- lsa(mod, fun, par, var)
+#' out <- lsa(mod, par, var, fun)
 #'
 #' head(out)
 #'
 #' plot(out)
 #'
 #' @export
-lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
+lsa <- function(mod, par, var, fun = .lsa_fun, eps = 1E-8, ...) {
   if(!inherits(mod,"mrgmod")) {
     stop("mod argument must have class 'mrgmod'.", call.=FALSE)
   }
@@ -113,7 +113,7 @@ lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
     out[[i]][["par"]] <- par_sens[i]
     out[[i]][["sens"]] <- dvalue(out[[i]],base_long,scale)*dpar[i]
   }
-  ans <- dplyr::bind_rows(out)
+  ans <- dplyr::as_tibble(dplyr::bind_rows(out))
   structure(ans, class=c("lsa", class(ans)))
 }
 
@@ -127,11 +127,13 @@ lsa <- function(mod, fun, par, var, eps=1E-8, ...) {
 #' @export
 plot.lsa <- function(x,y=NULL,...) {
   stopifnot(requireNamespace("ggplot2"))
+  pal <- getOption("vera.brewer.palette", "Set2")
+  scale.col <- getOption("vera.scale.col",ggplot2::scale_color_brewer(palette=pal))
   tcol <- "time"
   if("TIME" %in% names(x)) tcol <- "TIME"
   if(!exists(tcol,x)) stop("couldn't find time column", call.=FALSE)
   x[["vera__plot__time"]] <- x[[tcol]]
-  x[["var"]] <- factor(x[["var"]], levels=unique(x[["var"]]))
+  x[["var"]] <- factor(x[["var"]], levels = unique(x[["var"]]))
   x[["par"]] <- factor(x[["par"]], levels = unique(x[["par"]]))
   ggplot2::ggplot(x,ggplot2::aes_string("vera__plot__time","sens",col="par")) +
     ggplot2::geom_line(lwd=1) +
@@ -139,6 +141,11 @@ plot.lsa <- function(x,y=NULL,...) {
     ggplot2::theme(legend.position="top") +
     ggplot2::xlab("Time") +
     ggplot2::ylab("Sensitivity") +
-    ggplot2::scale_color_brewer(palette="Set2") +
+    scale.col +
     ggplot2::facet_wrap(~var)
 }
+
+.lsa_fun <- function(p,...) {
+  mrgsim(mod, param = p,...)
+}
+
