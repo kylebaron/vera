@@ -1,5 +1,5 @@
-# coverage: 94.59%
+# coverage: 87.8%
 
 |file     | coverage|
 |:--------|--------:|
-|R/vera.R |    94.59|
+|R/vera.R |     87.8|

@@ -40,7 +40,7 @@ dvalue <- function(sim,ref,scale) {
 #' @param ... arguments passed to `fun`
 #'
 #' @examples
-#' mod <- mrgsolve::modlib("pk1",delta=0.1)
+#' mod <- mrgsolve::house("pk1",delta=0.1)
 #'
 #' par <- "CL,V,KA"
 #'
@@ -48,7 +48,7 @@ dvalue <- function(sim,ref,scale) {
 #'
 #' dose <- ev(amt = 100)
 #'
-#' fun <- function(p) mrgsim_e(mod,dose,param=p,output="df")
+#' fun <- function(p) mrgsolve::mrgsim_e(mod,dose,param=p,output="df")
 #'
 #' out <- lsa(mod, fun, par, var)
 #'

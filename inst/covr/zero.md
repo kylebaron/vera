@@ -1,5 +1,11 @@
 "","filename","functions","line","value"
 "1","R/vera.R","cvec_cs",7,0
 "6","R/vera.R","cvec_cs",12,0
-"62","R/vera.R","plot.lsa",104,0
-"63","R/vera.R","plot.lsa",105,0
+"17","R/vera.R","lsa",62,0
+"18","R/vera.R","lsa",64,0
+"34","R/vera.R","lsa",81,0
+"35","R/vera.R","lsa",82,0
+"36","R/vera.R","lsa",83,0
+"37","R/vera.R","lsa",84,0
+"70","R/vera.R","plot.lsa",131,0
+"71","R/vera.R","plot.lsa",132,0

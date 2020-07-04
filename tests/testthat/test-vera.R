@@ -1,6 +1,9 @@
+library(testthat)
+library(vera)
+
 context("basic functionality")
 
-mod <- suppressMessages(mrgsolve::modlib("pk1"))
+mod <- suppressMessages(mrgsolve::house())
 
 fun <- function(p) {
   mod %>%
